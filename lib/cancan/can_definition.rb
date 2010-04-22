@@ -28,7 +28,7 @@ module CanCan
 
     def association_joins(conditions = @conditions)
       joins = []
-      conditions.each do |name, value|
+      (conditions || []).each do |name, value|
         if value.kind_of? Hash
           nested = association_joins(value)
           if nested

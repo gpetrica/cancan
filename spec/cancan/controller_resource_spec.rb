@@ -56,4 +56,9 @@ describe CanCan::ControllerResource do
       CanCan::ControllerResource.new(@controller, :ability, nil, :class => Person)
     }.should raise_error(CanCan::ImplementationRemoved)
   end
+
+	it "should find the correct model when resource is not specified" do
+		lambda { CanCan::ControllerResource.new(@controller, 'Sub::Model').model_class }.should_not raise_error
+		CanCan::ControllerResource.new(@controller, 'Sub::Model').model_class.should == Sub::Model
+	end
 end

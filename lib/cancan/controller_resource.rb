@@ -12,7 +12,7 @@ module CanCan
     def model_class
       resource_class = @options[:resource]
       if resource_class.nil?
-        @name.to_s.camelize.constantize
+        @name.to_s.camelize.constantize rescue @name.to_s.split("_").map {|p| p.camelize}.join("::").constantize
       elsif resource_class.kind_of? String
         resource_class.constantize
       else
