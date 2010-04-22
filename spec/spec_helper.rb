@@ -21,3 +21,8 @@ end
 # this class helps out in testing nesting
 class Person
 end
+
+module Sub
+	class Model
+	end
+end

@@ -30,4 +30,10 @@ describe CanCan::CanDefinition do
     @conditions[:foo] = {:bar => {1 => 2}}
     @can.association_joins.should == [{:foo => [:bar]}]
   end
+
+	it "should allow nil conditions" do
+		@can = CanCan::CanDefinition.new(true, :read, Integer, nil, nil)
+		lambda { @can.association_joins }.should_not raise_error
+		@can.association_joins.should be_nil
+	end
 end
